@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let strs = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat']
+      let strs = ['']
+      var groupAnagrams = function (strs) {
+        function formatStr(str) {
+          return str.split('').sort().join('')
+        }
+        let hashMap = new Map()
+        hashMap.set(formatStr(strs[0]), [strs[0]])
+        for (let i = 1; i < strs.length; i++) {
+          let temp = formatStr(strs[i])
+          if (hashMap.has(temp)) {
+            hashMap.set(temp, [...hashMap.get(temp), strs[i]])
+          } else {
+            hashMap.set(temp, [strs[i]])
+          }
+        }
+        return Array.from(hashMap.values())
+      }
+      let c = groupAnagrams(strs)
+      console.log(c, 'fff')
+    </script>
+  </body>
+</html>
